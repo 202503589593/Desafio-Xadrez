@@ -1,0 +1,71 @@
+#include <stdio.h>
+
+#define MOVIMENTOS_TORRE 5
+#define MOVIMENTOS_BISPO 4
+#define MOVIMENTOS_RAINHA 3
+#define MOVIMENTOS_CAVALO 2
+
+void moverTorre(int casas) {
+    if (casas == 0) return;
+    printf("Direita\n");
+    moverTorre(casas - 1);
+}
+
+void moverBispo(int casas) {
+    if (casas == 0) return;
+    printf("Diagonal superior direita\n");
+    moverBispo(casas - 1);
+}
+
+void moverRainha(int casas) {
+    if (casas == 0) return;
+    printf("Diagonal inferior esquerda\n");
+    moverRainha(casas - 1);
+}
+
+void moverBispoLoops(int casas) {
+    for (int i = 0; i < casas; i++) {
+        for (int j = 0; j < casas; j++) {
+            printf("Diagonal superior direita\n");
+        }
+    }
+}
+
+void moverCavalo() {
+    for (int i = 0; i < MOVIMENTOS_CAVALO; i++) {
+        for (int j = 0; j < MOVIMENTOS_CAVALO; j++) {
+            if (i == 1 && j == 0) {
+                printf("Cima\n");
+                continue;
+            }
+            if (i == 0 && j == 1) {
+                printf("Direita\n");
+                break;
+            }
+        }
+    }
+}
+
+int main() {
+    printf("Movimento da Torre:\n");
+    moverTorre(MOVIMENTOS_TORRE);
+    printf("\n");
+
+    printf("Movimento do Bispo (recursivo):\n");
+    moverBispo(MOVIMENTOS_BISPO);
+    printf("\n");
+
+    printf("Movimento do Bispo (loops aninhados):\n");
+    moverBispoLoops(MOVIMENTOS_BISPO);
+    printf("\n");
+
+    printf("Movimento da Rainha:\n");
+    moverRainha(MOVIMENTOS_RAINHA);
+    printf("\n");
+
+    printf("Movimento do Cavalo:\n");
+    moverCavalo();
+    printf("\n");
+    
+    return 0;
+}
